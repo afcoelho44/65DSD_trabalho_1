@@ -8,11 +8,11 @@ import java.util.Map;
 public class Department {
 
     private String name;
-    private final Long numberID;
+    private final long numberID;
     private Manager manager; //nullable
     private final Map<String, Person> employees = new HashMap<>();
 
-    private static Long numberIdGenerator = 0L;
+    private static long numberIdGenerator = 0L;
 
     public Department(String name){
         this.name = name;
@@ -27,7 +27,7 @@ public class Department {
         this.name = name;
     }
 
-    public Long getNumberID() {
+    public long getNumberID() {
         return numberID;
     }
 
@@ -36,7 +36,12 @@ public class Department {
     }
 
     public void setManager(Manager manager) {
+        if (this.manager != null){
+            this.employees.remove(this.manager.getCpf());
+        }
+
         this.manager = manager;
+        addEmployee(manager.getCpf(), manager);
     }
 
     public List<Person> getEmployees() {
@@ -53,11 +58,11 @@ public class Department {
 
     @Override
     public String toString() {
-        return "Department{" +
-                "name: " + name + ", \n" +
-                "numberID: " + numberID + ", \n" +
-                "manager: " + manager + ", \n" +
-                "employee: " + employees + ", \n" +
+        return "Department:\n{\n" +
+                "\tname: " + name + ", \n" +
+                "\tnumberID: " + numberID + ", \n" +
+                "\tmanager: " + manager + ", \n" +
+                "\temployees: " + getEmployees() + ", \n" +
                 '}';
     }
 }
