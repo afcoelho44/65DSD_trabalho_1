@@ -37,7 +37,7 @@ public class Department {
 
     public void setManager(Manager manager) {
         if (this.manager != null){
-            this.employees.remove(this.manager.getCpf());
+            removeEmployee(this.manager.getCpf());
         }
 
         this.manager = manager;
