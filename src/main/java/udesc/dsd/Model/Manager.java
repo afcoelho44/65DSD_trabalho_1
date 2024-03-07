@@ -6,9 +6,9 @@ public class Manager extends Person{
 
     private final String accessKey;
 
-    public Manager(String cpf, String name, String address, Department department) {
+    public Manager(String cpf, String name, String address, Department department, String accessKey) {
         super(cpf, name, address, department);
-        accessKey = new AccessKeyGenerator().GenerateAccessCode();
+        this.accessKey = accessKey;
     }
 
     public String getAccessKey() {

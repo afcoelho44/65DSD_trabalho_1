@@ -1,5 +1,6 @@
 package udesc.dsd.Utils;
 
+import udesc.dsd.Exception.CodeGeneratingTimeoutException;
 import udesc.dsd.Dao.ManagerAccessKeyDao;
 import udesc.dsd.Dao.ManagerAccessKeyRepository;
 
@@ -9,27 +10,41 @@ public class AccessKeyGenerator {
 
     private final ManagerAccessKeyRepository repository = new ManagerAccessKeyDao();
 
-    public String GenerateAccessCode(){
+    public String[] generateAccessCode(){
         Random random = new Random();
         Hasher256 hasher = new Hasher256();
         StringBuilder builder = new StringBuilder();
-        String alphabet = "abcdefghijklmnopqrstuvwxyz1234567890";
-        int length = alphabet.length() - 1;
 
-        String code = "";
-        do {
-            for (int i = 0; i < 10; i++){
-                builder.append(alphabet.charAt(random.nextInt(length)));
-            }
+        String encryptedCode = generateRandomSequence(builder, random, hasher);
+        String originalCode = builder.toString();
 
-            code = hasher.toHash256(builder.toString());
-        } while (IsCodeRepeated(code));
+        for (int i = 0; i < 10 && isCodeRepeated(encryptedCode); i++){
+            encryptedCode = generateRandomSequence(builder, random, hasher);
+            originalCode = builder.reverse().toString();
 
-        repository.add(code);
-        return builder.toString();
+            if (i == 9) throw new CodeGeneratingTimeoutException();
+        }
+
+        repository.add(encryptedCode);
+        return new String[]{originalCode, encryptedCode};
     }
 
-    private boolean IsCodeRepeated(String code){
+    private boolean isCodeRepeated(String code){
         return repository.getAll().contains(code);
     }
+
+    private String generateRandomSequence(StringBuilder builder, Random random, Hasher256 hasher){
+        String alphabet = "abcdefghijklmnopqrstuvwxyz1234567890";
+        int length = alphabet.length() - 1;
+        builder.delete(0, builder.length());
+
+        for (int j = 0; j < 10; j++){
+            builder.append(alphabet.charAt(random.nextInt(length)));
+        }
+
+        String originalCode = builder.reverse().toString();
+
+        return hasher.toHash256(originalCode);
+    }
+
 }

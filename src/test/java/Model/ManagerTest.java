@@ -4,6 +4,7 @@ import org.junit.Test;
 import udesc.dsd.Model.Department;
 import udesc.dsd.Model.Employee;
 import udesc.dsd.Model.Manager;
+import udesc.dsd.Utils.AccessKeyGenerator;
 
 import static org.junit.Assert.*;
 import static org.junit.Assert.assertEquals;
@@ -16,9 +17,10 @@ public class ManagerTest {
         String name = "Ana";
         String address = "Rua x";
         String departmentName = "security";
+        String uniqueAccessKey = new AccessKeyGenerator().generateAccessCode()[1];
 
         Department department = new Department(departmentName);
-        Manager manager = new Manager( cpf, name, address, department);
+        Manager manager = new Manager( cpf, name, address, department, uniqueAccessKey);
 
         assertNotNull("Manager cannot be null", manager);
         assertNotNull("Manager's department cannot be null", manager.getDepartment());
@@ -35,6 +37,7 @@ public class ManagerTest {
         String oldName = "Ana";
         String oldAddress = "Rua x";
         String oldDepartmentName = "security";
+        String uniqueAccessKey = new AccessKeyGenerator().generateAccessCode()[1];
         Department oldDepartment = new Department(oldDepartmentName);
 
         //the cpf is not changeable
@@ -44,7 +47,7 @@ public class ManagerTest {
         String newDepartmentName = "Software Engineering";
         Department newDepartment = new Department(newDepartmentName);
 
-        Manager manager = new Manager( oldCpf, oldName, oldAddress, oldDepartment );
+        Manager manager = new Manager( oldCpf, oldName, oldAddress, oldDepartment, uniqueAccessKey);
 
         manager.setName(newName);
         manager.setAddress(newAddress);
