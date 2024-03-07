@@ -2,11 +2,18 @@ package udesc.dsd.Model;
 
 public class Employee extends Person{
 
-    private String periodo;
+    private String workShift;
 
+    public Employee(String cpf, String name, String address, Department department, String workShift) {
+        super(cpf, name, address, department);
+        this.workShift = workShift;
+    }
 
-    public Employee(String cpf, String name, String address, String periodo) {
-        super(cpf, name, address);
-        this.periodo=periodo;
+    public String getWorkShift() {
+        return workShift;
+    }
+
+    public void setWorkShift(String workShift) {
+        this.workShift = workShift;
     }
 }

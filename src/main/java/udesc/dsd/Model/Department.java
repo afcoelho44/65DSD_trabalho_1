@@ -1,20 +1,22 @@
 package udesc.dsd.Model;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class Department {
 
     private String name;
+    private final Long numberID;
+    private Manager manager; //nullable
+    private final Map<String, Person> employees = new HashMap<>();
 
-    private Long numberID;
+    private static Long numberIdGenerator = 0L;
 
-    private Manager manager;
-
-    private List<Person> employees;
-
-    public Department(String name, Long numberID){
-        this.name=name;
-        this.numberID=numberID;
+    public Department(String name){
+        this.name = name;
+        this.numberID = ++numberIdGenerator;
     }
 
     public String getName() {
@@ -29,10 +31,6 @@ public class Department {
         return numberID;
     }
 
-    public void setNumberID(Long numberID) {
-        this.numberID = numberID;
-    }
-
     public Manager getManager() {
         return manager;
     }
@@ -42,23 +40,24 @@ public class Department {
     }
 
     public List<Person> getEmployees() {
-        return employees;
-    }
-    public void addEmployee(Person person){
-        this.employees.add(person);
-    }
-    public void removeEmployee(Person person){
-        this.employees.remove(person);
+        return new ArrayList<>(employees.values());
     }
 
+    public void addEmployee(String cpf, Person person){
+        this.employees.put(cpf, person);
+    }
+
+    public void removeEmployee(String cpf){
+        this.employees.remove(cpf);
+    }
 
     @Override
     public String toString() {
         return "Department{" +
-                "name='" + name + '\'' +
-                ", numberID=" + numberID +
-                ", manager=" + manager +
-                ", employee=" + employees+
+                "name: " + name + ", \n" +
+                "numberID: " + numberID + ", \n" +
+                "manager: " + manager + ", \n" +
+                "employee: " + employees + ", \n" +
                 '}';
     }
 }
