@@ -5,7 +5,7 @@ public abstract class Person {
     protected String cpf;
     protected String name;
     protected String address;
-    protected  Department department;
+    protected Department department;
 
     public Person(String cpf, String name, String address, Department department) {
         this.cpf = cpf;
@@ -40,5 +40,14 @@ public abstract class Person {
 
     public void setDepartment(Department department) {
         this.department = department;
+    }
+
+    @Override
+    public String toString(){
+        return
+                "{\n" +
+                    "\t" + cpf + ",\n" +
+                    "\t" + name + ",\n" +
+                    "\t" + address;
     }
 }

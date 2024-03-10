@@ -86,24 +86,29 @@ public class DepartmentTest {
 
     @Test
     public void mustRemoveEmployee(){
-        String cpf = "1234567890";
+
+        String cpf1 = "1234567890";
+        String cpf2 = "1234567891";
+        String cpf3 = "1234567892";
+        String cpf4 = "1234567893";
+        String cpf5 = "1234567894";
         String name = "testName";
         String address = "testAddress";
         String workShift = "morning";
 
         Department department = new Department("Test");
 
-        Employee employeeTest1 = new Employee(cpf, name, address, department, workShift);
-        Employee employeeTest2 = new Employee(cpf, name, address, department, workShift);
-        Employee employeeTest3 = new Employee(cpf, name, address, department, workShift);
-        Employee employeeTest4 = new Employee(cpf, name, address, department, workShift);
-        Employee employeeTest5 = new Employee(cpf, name, address, department, workShift);
+        Employee employeeTest1 = new Employee(cpf1, name, address, department, workShift);
+        Employee employeeTest2 = new Employee(cpf2, name, address, department, workShift);
+        Employee employeeTest3 = new Employee(cpf3, name, address, department, workShift);
+        Employee employeeTest4 = new Employee(cpf4, name, address, department, workShift);
+        Employee employeeTest5 = new Employee(cpf5, name, address, department, workShift);
 
         department.addEmployee(employeeTest1.getCpf(), employeeTest1);
-        department.addEmployee(employeeTest1.getCpf(), employeeTest2);
-        department.addEmployee(employeeTest1.getCpf(), employeeTest3);
-        department.addEmployee(employeeTest1.getCpf(), employeeTest4);
-        department.addEmployee(employeeTest1.getCpf(), employeeTest5);
+        department.addEmployee(employeeTest2.getCpf(), employeeTest2);
+        department.addEmployee(employeeTest3.getCpf(), employeeTest3);
+        department.addEmployee(employeeTest4.getCpf(), employeeTest4);
+        department.addEmployee(employeeTest5.getCpf(), employeeTest5);
 
         department.removeEmployee(employeeTest1.getCpf());
         department.removeEmployee(employeeTest2.getCpf());
@@ -113,4 +118,33 @@ public class DepartmentTest {
 
         assertTrue(department.getEmployees().isEmpty());
     }
+
+    @Test
+    public void mustReturnToString(){
+        Department department = new Department("Security");
+
+        String cpf1 = "1234567890";
+        String cpf2 = "1234567891";
+        String cpf3 = "1234567892";
+        String cpf4 = "1234567893";
+        String cpf5 = "1234567894";
+        String name = "testName";
+        String address = "testAddress";
+        String workShift = "morning";
+
+        Employee employeeTest1 = new Employee(cpf1, name, address, department, workShift);
+        Employee employeeTest2 = new Employee(cpf2, name, address, department, workShift);
+        Employee employeeTest3 = new Employee(cpf3, name, address, department, workShift);
+        Employee employeeTest4 = new Employee(cpf4, name, address, department, workShift);
+        Employee employeeTest5 = new Employee(cpf5, name, address, department, workShift);
+
+        department.addEmployee(employeeTest1.getCpf(), employeeTest1);
+        department.addEmployee(employeeTest2.getCpf(), employeeTest2);
+        department.addEmployee(employeeTest3.getCpf(), employeeTest3);
+        department.addEmployee(employeeTest4.getCpf(), employeeTest4);
+        department.addEmployee(employeeTest5.getCpf(), employeeTest5);
+
+        assertNotNull(department.toString());
+    }
+
 }

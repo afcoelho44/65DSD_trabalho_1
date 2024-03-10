@@ -16,4 +16,11 @@ public class Employee extends Person{
     public void setWorkShift(String workShift) {
         this.workShift = workShift;
     }
+
+    @Override
+    public String toString(){
+        return super.toString()
+                + "\n\tturn: " + workShift + "\n" +
+                "}";
+    }
 }

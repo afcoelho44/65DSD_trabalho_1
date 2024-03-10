@@ -15,5 +15,9 @@ public class Manager extends Person{
         return accessKey;
     }
 
-
+    @Override
+    public String toString(){
+        return super.toString() + "\n" +
+                "}";
+    }
 }
