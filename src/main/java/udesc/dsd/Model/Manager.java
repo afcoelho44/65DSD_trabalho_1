@@ -1,7 +1,5 @@
 package udesc.dsd.Model;
 
-import udesc.dsd.Utils.AccessKeyGenerator;
-
 public class Manager extends Person{
 
     private final String accessKey;

@@ -25,9 +25,7 @@ public class PersonDao implements PersonRepository{
 
     @Override
     public List<Person> getAll() {
-        if (!persons.isEmpty())
             return persons;
-        else throw new NotAnyPersonException();
     }
 
     @Override
