@@ -13,5 +13,9 @@ public abstract class Service {
         this.out = out;
     }
 
-    public abstract boolean execute();
+    public abstract void insert();
+    public abstract void update();
+    public abstract void delete();
+    public abstract void get();
+    public abstract void list();
 }

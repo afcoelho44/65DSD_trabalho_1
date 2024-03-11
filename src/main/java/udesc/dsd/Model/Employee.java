@@ -20,7 +20,6 @@ public class Employee extends Person{
     @Override
     public String toString(){
         return super.toString()
-                + "\n\tturn: " + workShift + "\n" +
-                "}";
+                + ";" + workShift;
     }
 }

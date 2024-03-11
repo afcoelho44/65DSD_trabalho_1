@@ -8,5 +8,7 @@ public class Constants {
     public static final String GET = "GET";
     public static final String LIST = "LIST";
     public static final String TYPE_MANAGER = String.valueOf(0);
-    public static final String TYPE_EMPLOYEE = String.valueOf(1);
+    public static final String DEPARTMENT_REQUEST = "DEPARTMENT";
+    public static final String PERSON_REQUEST = "PERSON";
+
 }

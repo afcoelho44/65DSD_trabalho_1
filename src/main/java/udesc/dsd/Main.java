@@ -14,7 +14,7 @@ public class Main {
 
         Server server = new Server(new ServerSocket(65000));
 
-            server.serve();
+        server.serve();
 //        var departments = new ArrayList<>(
 //                Arrays.asList(
 //                        CreateDepartmentTest(),

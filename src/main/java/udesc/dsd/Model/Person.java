@@ -44,10 +44,6 @@ public abstract class Person {
 
     @Override
     public String toString(){
-        return
-                "{\n" +
-                    "\t" + cpf + ",\n" +
-                    "\t" + name + ",\n" +
-                    "\t" + address;
+        return cpf + ";" + name + ";" + address;
     }
 }

@@ -1,9 +1,8 @@
 package udesc.dsd.Socket;
 
-import udesc.dsd.Commons.Constants;
+import udesc.dsd.Exception.ServerSideException;
 import udesc.dsd.Service.*;
 import udesc.dsd.Utils.ProtocolTranslator;
-import udesc.dsd.enums.DataIndexes;
 
 import java.io.*;
 import java.net.ServerSocket;
@@ -15,13 +14,14 @@ public class Server {
     private Socket connection;
     private BufferedReader in;
     private PrintWriter out;
+    private ServiceMediator mediator;
 
     public Server(ServerSocket server){
         this.server = server;
+        this.mediator = new ServiceMediator();
     }
 
     public void serve() throws IOException {
-
         this.server.setReuseAddress(true);
         String message;
         while (true) {
@@ -34,36 +34,27 @@ public class Server {
                 setOut();
 
                 message = in.readLine();
+                String[] request = ProtocolTranslator.translateRequest(message);
+                mediator.setup(request, out);
+                mediator.execute();
 
-                operate(ProtocolTranslator.translate(message));
+                connection.close();
+                System.out.println("Socket closed.");
+            } catch (ServerSideException e) {
+                String errorMessage = e.getMessage();
 
-            } catch (Exception e) {
-                System.out.println("Error");
+                System.out.println(errorMessage);
+                out.println(errorMessage);
+
                 if (connection != null) {
                     connection.close();
                     System.out.println("Socket closed.");
                 }
+            } catch (Exception e){
+                out.println("Server closed!");
                 server.close();
-                System.out.println("ServerSocket closed.");
-                break;
             }
         }
-    }
-
-    private void operate(String[] data){
-        String method = data[DataIndexes.METHOD.index];
-
-        Service service = switch (method) {
-            case Constants.INSERT -> new InsertPersonService(data, out);
-            case Constants.UPDATE -> new UpdatePersonService(data, out);
-            case Constants.DELETE -> new DeletePersonService(data, out);
-            case Constants.GET -> new GetPersonService(data, out);
-            case Constants.LIST -> new ListPersonService(data, out);
-
-            default -> throw new RuntimeException("Method not found!");
-        };
-
-        service.execute();
     }
 
     private void setIn() throws IOException{

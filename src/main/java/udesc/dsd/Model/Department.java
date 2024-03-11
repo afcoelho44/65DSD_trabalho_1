@@ -10,7 +10,7 @@ public class Department {
     private String name;
     private final long numberID;
     private Manager manager; //nullable
-    private final Map<String, Person> employees = new HashMap<>();
+    public final Map<String, Person> employees = new HashMap<>();
 
     private static long numberIdGenerator = 0L;
 
@@ -41,7 +41,6 @@ public class Department {
         }
 
         this.manager = manager;
-        addEmployee(manager.getCpf(), manager);
     }
 
     public List<Person> getEmployees() {
@@ -49,7 +48,10 @@ public class Department {
     }
 
     public void addEmployee(String cpf, Person person){
-        this.employees.put(cpf, person);
+        if (person instanceof Manager){
+            setManager(manager);
+        }
+        else this.employees.put(cpf, person);
     }
 
     public void removeEmployee(String cpf){
@@ -64,5 +66,9 @@ public class Department {
                 "\tmanager: " + manager + ", \n" +
                 "\temployees: " + getEmployees() + ", \n" +
                 '}';
+    }
+
+    public String toResponseString(){
+        return getNumberID() + "; " + getName();
     }
 }
