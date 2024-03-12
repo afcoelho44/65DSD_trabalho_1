@@ -1,9 +1,6 @@
 package udesc.dsd.Model;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class Department {
 
@@ -48,8 +45,8 @@ public class Department {
     }
 
     public void addEmployee(String cpf, Person person){
-        if (person instanceof Manager){
-            setManager(manager);
+        if (person instanceof Manager newManager){
+            setManager(newManager);
         }
         else this.employees.put(cpf, person);
     }
@@ -60,15 +57,14 @@ public class Department {
 
     @Override
     public String toString() {
-        return "Department:\n{\n" +
-                "\tname: " + name + ", \n" +
-                "\tnumberID: " + numberID + ", \n" +
-                "\tmanager: " + manager + ", \n" +
-                "\temployees: " + getEmployees() + ", \n" +
-                '}';
-    }
 
-    public String toResponseString(){
-        return getNumberID() + "; " + getName();
+        StringBuilder employeesList = new StringBuilder("[");
+        getEmployees().forEach(employeesList::append);
+        employeesList.append("]");
+
+        return getNumberID() + ", "
+                + getName() + ", "
+                + (manager != null ? manager.getName() : "Sem Gerente") + ", "
+                + employeesList;
     }
 }

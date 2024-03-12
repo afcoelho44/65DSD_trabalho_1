@@ -8,13 +8,16 @@ import java.io.*;
 import java.net.ServerSocket;
 import java.net.Socket;
 
+import static udesc.dsd.Commons.Colors.BLUE;
+import static udesc.dsd.Commons.Colors.RED;
+
 public class Server {
 
     private final ServerSocket server;
     private Socket connection;
     private BufferedReader in;
     private PrintWriter out;
-    private ServiceMediator mediator;
+    private final ServiceMediator mediator;
 
     public Server(ServerSocket server){
         this.server = server;
@@ -26,9 +29,9 @@ public class Server {
         String message;
         while (true) {
             try {
-                System.out.println("Waiting request...");
+                System.out.println(BLUE + "Waiting request...");
                 connection = server.accept();
-                System.out.println("Requested");
+                System.out.println(BLUE + "Requested");
 
                 setIn();
                 setOut();
@@ -39,7 +42,7 @@ public class Server {
                 mediator.execute();
 
                 connection.close();
-                System.out.println("Socket closed.");
+                System.out.println(BLUE + "Socket closed.");
             } catch (ServerSideException e) {
                 String errorMessage = e.getMessage();
 
@@ -53,6 +56,8 @@ public class Server {
             } catch (Exception e){
                 out.println("Server closed!");
                 server.close();
+                System.out.println(RED + "The server stopped abruptly due an error");
+                break;
             }
         }
     }

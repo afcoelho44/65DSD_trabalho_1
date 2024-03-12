@@ -49,3 +49,13 @@ Z
 *src/main/java/udesc/dsd/Model/Manager.java,3\7\37f696d3c121c9c16b0aa35366981dae06976567
 e
 5src/main/java/udesc/dsd/Utils/ProtocolTranslator.java,7\e\7e1fd6c1313e28c5245067450f246d8170338459
+Q
+!src/main/java/udesc/dsd/Main.java,5\e\5e7bd4cb8ca790527aa55c1178eff9bd84c20744
+b
+2src/main/java/udesc/dsd/Utils/ResponseMessage.java,c\e\ce1db6631d1a124cf059945dc2a74c977075418c
+e
+5src/main/java/udesc/dsd/Utils/AccessKeyGenerator.java,5\7\57c3a2b5aef5e5599e4215c8efa3b62ed171970d
+T
+$src/test/java/Model/ManagerTest.java,5\7\5747ecc49855bde1380089e76e58830672001df1
+[
++src/main/java/udesc/dsd/Commons/Colors.java,c\a\ca98397b8d7b9c6e30b22f1273d86a1fb0db9296

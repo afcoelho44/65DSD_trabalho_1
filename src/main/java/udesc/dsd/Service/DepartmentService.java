@@ -3,9 +3,13 @@ package udesc.dsd.Service;
 import udesc.dsd.Dao.DepartmentDao;
 import udesc.dsd.Dao.DepartmentRepository;
 import udesc.dsd.Model.Department;
+import udesc.dsd.Utils.ProtocolTranslator;
+import udesc.dsd.Utils.ResponseMessage;
 import udesc.dsd.enums.DataIndexes;
 
 import java.io.PrintWriter;
+import java.util.ArrayList;
+import java.util.List;
 
 public class DepartmentService extends Service{
 
@@ -22,10 +26,10 @@ public class DepartmentService extends Service{
 
             Department department = new Department(request[DataIndexes.NAME.index]);
             repository.add(department);
-            response = "Success!";
+            response = ResponseMessage.messageResponse("Departamento criado.");
 
         } catch (Exception e){
-            response = "Error inserting department!";
+            response = ResponseMessage.messageResponse(e.getMessage());
         }
 
         out.println(response);
@@ -39,10 +43,10 @@ public class DepartmentService extends Service{
 
             Department department = repository.getById(DataIndexes.DEPARTMENT_ID.index);
             department.setName(request[DataIndexes.NAME.index]);
-            response = "Pessoa atualizada com sucesso";
+            response = ResponseMessage.messageResponse("Pessoa atualizada com sucesso");
 
         } catch (Exception e){
-            response = e.getMessage();
+            response = ResponseMessage.messageResponse(e.getMessage());
         }
 
         out.println(response);
@@ -56,10 +60,10 @@ public class DepartmentService extends Service{
 
             Department department = repository.getById(DataIndexes.DEPARTMENT_ID.index);
             repository.remove(department);
-            response = "Departamento removido com sucesso";
+            response = ResponseMessage.messageResponse("Departamento removido com sucesso");
 
         } catch (Exception e){
-            response = e.getMessage();
+            response = ResponseMessage.messageResponse(e.getMessage());
         }
 
         out.println(response);
@@ -72,10 +76,10 @@ public class DepartmentService extends Service{
         try {
 
             Department department = repository.getById(DataIndexes.DEPARTMENT_ID.index);
-            response = department.toResponseString();
+            response = ResponseMessage.objectResponse(department.toString());
 
         } catch (Exception e){
-            response = e.getMessage();
+            response = ResponseMessage.messageResponse(e.getMessage());
         }
 
         out.println(response);
@@ -86,13 +90,24 @@ public class DepartmentService extends Service{
     public void list() {
 
         String response;
-        StringBuilder builder = new StringBuilder();
+        try{
+            List<Department> departmentList = repository.getAll();
+            String formattedSize = String.format("%02d", departmentList.size());
 
-        try {
-            repository.getAll().forEach(department -> builder.append(department.toResponseString()));
-            response = builder.toString();
+            if (departmentList.isEmpty()) response = formattedSize;
+            else {
+                List<String> responseList = new ArrayList<>();
+                responseList.add(formattedSize);
+                departmentList.stream().map(Department::toString).forEach(responseList::add);
+
+                String[] responseArray = responseList.toArray(String[]::new);
+                response = ProtocolTranslator.translateResponse(responseArray);
+                response = ResponseMessage.objectResponse(response);
+            }
+
+        out.println(response);
         } catch (Exception e){
-            response = e.getMessage();
+            response = ResponseMessage.messageResponse(e.getMessage());
         }
 
         out.println(response);

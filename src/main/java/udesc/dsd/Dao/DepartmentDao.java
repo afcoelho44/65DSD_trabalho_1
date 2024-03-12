@@ -5,16 +5,13 @@ import udesc.dsd.Exception.NotAnyDepartmentException;
 import udesc.dsd.Model.Department;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class DepartmentDao implements DepartmentRepository{
 
     private static final List<Department> departments = new ArrayList<>();
     private static boolean populated = false;
-
-    public DepartmentDao(){
-        populate();
-    }
 
     @Override
     public Department getById(long id) {
@@ -47,9 +44,17 @@ public class DepartmentDao implements DepartmentRepository{
         else throw new  NotAnyDepartmentException();
     }
 
-    private static void populate (){
+    public static void populate (){
         if(!populated){
-            departments.add(new Department("Security"));
+
+            Department[] population = new Department[]{
+                    new Department("Security"),
+                    new Department("RH"),
+                    new Department("Development"),
+                    new Department("Marketing"),
+            };
+
+            departments.addAll(Arrays.asList(population));
             populated = true;
         }
     }

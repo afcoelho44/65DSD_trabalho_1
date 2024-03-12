@@ -1,9 +1,12 @@
 
 W
-java:S1700"Rename field "server"(¹‡Äp8Ş’Ğİâ1J$a26ba094-f2fa-4141-b18c-7d083b3418f6
-›	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(¸¹æ8à’Ğİâ1J$73116dd2-d51c-405e-a151-bcfbba1916f2
-r	java:S106"+Replace this use of System.out by a logger.(¸™èòøÿÿÿÿ8ç’Ğİâ1J$f7f46515-088d-47a9-87fe-7c93875a0445
-m	java:S106"+Replace this use of System.out by a logger.(§¨øú8è’Ğİâ1J$d20f04c2-8731-48d6-81f0-eaf8913b6ca5
-r	java:S106*"+Replace this use of System.out by a logger.(òşØóÿÿÿÿÿ8é’Ğİâ1J$83fe50d5-90e3-469d-ad0f-e1ec0b8b8081
-r	java:S106."+Replace this use of System.out by a logger.(Û¬çŞøÿÿÿÿ8ê’Ğİâ1J$59e324a2-c209-45b7-837b-bacbc8c9c888
-r	java:S1063"+Replace this use of System.out by a logger.(òşØóÿÿÿÿÿ8ë’Ğİâ1J$7845e166-3cfa-4785-8854-2ee0ffc53e09
+java:S1700"Rename field "server"(¹‡Äp8…åØ÷â1J$1d10d93e-375e-40dc-a9cd-11fd5624fd1f
+›	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(¸¹æ8‡åØ÷â1J$663f0705-351c-42af-816b-a90899972936
+j
+java:S2189""Add an end condition to this loop.(˜ïˆÿÿÿÿÿ8¾¶¨ã1J$16029afc-f3f0-49ff-8c30-6d71af5e90c7
+m	java:S106 "+Replace this use of System.out by a logger.(„šû‡8«æØ÷â1J$e882cb6c-4c95-4774-ae1a-f6c98c08a391
+r	java:S106""+Replace this use of System.out by a logger.(Í–õøÿÿÿÿ8«æØ÷â1J$3da7b178-ba01-416d-80a3-69077ce651a1
+r	java:S106-"+Replace this use of System.out by a logger.(ã€É•üÿÿÿÿ8¬æØ÷â1J$b0fe402e-6169-499e-80bb-9f5cc5c9fe78
+r	java:S1061"+Replace this use of System.out by a logger.(Û¬çŞøÿÿÿÿ8¬æØ÷â1J$e96c3a34-0f81-4de9-8ebc-19b7581a05c2
+r	java:S1066"+Replace this use of System.out by a logger.(òşØóÿÿÿÿÿ8­æØ÷â1J$5d1615e8-6541-47b1-966b-c8f7dc4ee426
+m	java:S106;"+Replace this use of System.out by a logger.(Æ‘Û¤8…Ã¦ã1J$5be28aec-2eef-4e46-ba06-beb1d07198f1

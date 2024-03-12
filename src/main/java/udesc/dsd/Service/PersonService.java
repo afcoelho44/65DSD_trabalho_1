@@ -9,7 +9,9 @@ import udesc.dsd.Model.Department;
 import udesc.dsd.Model.Employee;
 import udesc.dsd.Model.Manager;
 import udesc.dsd.Model.Person;
+import udesc.dsd.Utils.AccessKeyGenerator;
 import udesc.dsd.Utils.ProtocolTranslator;
+import udesc.dsd.Utils.ResponseMessage;
 
 import java.io.PrintWriter;
 import java.util.ArrayList;
@@ -22,6 +24,8 @@ public class PersonService extends Service{
 
     private final PersonRepository personRepository = new PersonDao();
     private final DepartmentRepository departmentRepository = new DepartmentDao();
+    private final AccessKeyGenerator generator = new AccessKeyGenerator();
+
     public PersonService(String[] request, PrintWriter out) {
         super(request, out);
     }
@@ -35,23 +39,30 @@ public class PersonService extends Service{
             String cpf = request[CPF.index];
             String name = request[NAME.index];
             String address = request[ADDRESS.index];
-            String speciality = request[SPECIALITY.index];
             long departmentId = Long.parseLong(request[DEPARTMENT_ID.index]);
 
             Department department = departmentRepository.getById(departmentId);
 
             Person person;
+            String speciality;
             if (isManager){
+                String[] keys = generator.generateAccessCode();
+                speciality = keys[1];
                 person = new Manager(cpf, name, address, department, speciality);
                 department.setManager((Manager) person);
+                response = "Decore sua chave de acesso, ela é irrecuperável: " + keys[0];
             }
-            else person = new Employee(cpf, name, address, department, speciality);
+            else{
+                speciality = request[SPECIALITY.index];
+                person = new Employee(cpf, name, address, department, speciality);
+                response = "";
+            }
 
             personRepository.add(person);
 
-            response = "";
+            response = ResponseMessage.messageResponse(response);
         } catch (Exception e){
-            response = e.getMessage();
+            response = ResponseMessage.messageResponse(e.getMessage());
         }
 
         out.println(response);
@@ -85,10 +96,10 @@ public class PersonService extends Service{
             }
 
             department.addEmployee(person.getCpf(), person);
-            response = "Pessoa atualizada com sucesso";
+            response = ResponseMessage.messageResponse("Pessoa atualizada com sucesso");
 
         } catch (ServerSideException e){
-            response = e.getMessage();
+            response = ResponseMessage.messageResponse(e.getMessage());
         }
 
         out.println(response);
@@ -107,10 +118,10 @@ public class PersonService extends Service{
             department.removeEmployee(cpf);
 
             personRepository.remove(person);
-            response = "Pessoa removida com sucesso";
+            response = ResponseMessage.messageResponse("Pessoa removida com sucesso");
 
         } catch (ServerSideException e){
-            response = e.getMessage();
+            response = ResponseMessage.messageResponse(e.getMessage());
         }
 
         out.println(response);
@@ -125,10 +136,10 @@ public class PersonService extends Service{
             String cpf = request[CPF.index];
             Person person = personRepository.getById(cpf);
 
-            response = person.toString();
+            response = ResponseMessage.objectResponse(person.toString());
 
         } catch (ServerSideException e){
-            response = e.getMessage();
+            response = ResponseMessage.messageResponse(e.getMessage());
         }
 
         out.println(response);
@@ -139,7 +150,7 @@ public class PersonService extends Service{
         String response;
 
         List<Person> personList = personRepository.getAll();
-        String formattedSize = String.format("%03d", personList.size());
+        String formattedSize = String.format("%02d", personList.size());
 
         if (personList.isEmpty()) response = formattedSize;
         else {
@@ -149,6 +160,7 @@ public class PersonService extends Service{
 
             String[] responseArray = responseList.toArray(String[]::new);
             response = ProtocolTranslator.translateResponse(responseArray);
+            response = ResponseMessage.objectResponse(response);
         }
 
         out.println(response);

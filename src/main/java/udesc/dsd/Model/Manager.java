@@ -1,5 +1,7 @@
 package udesc.dsd.Model;
 
+import static udesc.dsd.Commons.Constants.TYPE_MANAGER;
+
 public class Manager extends Person{
 
     private final String accessKey;
@@ -16,6 +18,6 @@ public class Manager extends Person{
     @Override
     public String toString(){
         return super.toString()
-                + ";" + accessKey;
+                + ";" + accessKey + ";" + TYPE_MANAGER + ";" + getDepartment().getNumberID();
     }
 }

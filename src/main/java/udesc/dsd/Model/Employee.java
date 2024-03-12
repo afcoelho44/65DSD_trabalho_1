@@ -1,5 +1,7 @@
 package udesc.dsd.Model;
 
+import static udesc.dsd.Commons.Constants.TYPE_EMPLOYEE;
+
 public class Employee extends Person{
 
     private String workShift;
@@ -20,6 +22,6 @@ public class Employee extends Person{
     @Override
     public String toString(){
         return super.toString()
-                + ";" + workShift;
+                + ";" + workShift + ";" + TYPE_EMPLOYEE + ";" + getDepartment().getNumberID();
     }
 }
