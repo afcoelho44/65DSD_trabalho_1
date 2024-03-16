@@ -11,7 +11,7 @@ import java.util.Scanner;
 import static udesc.dsd.Commons.Colors.GREEN;
 import static udesc.dsd.Commons.Colors.YELLOW;
 
-public class Main {
+public class App {
     public static void main(String[] args) throws IOException {
         populate();
         run();
@@ -47,4 +47,3 @@ public class Main {
     }
     private static boolean isRunning = true;
 }
-

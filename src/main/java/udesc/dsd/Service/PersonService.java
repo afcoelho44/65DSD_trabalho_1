@@ -55,6 +55,7 @@ public class PersonService extends Service{
             else{
                 speciality = request[SPECIALITY.index];
                 person = new Employee(cpf, name, address, department, speciality);
+                department.addEmployee(person.getCpf(), person);
                 response = "";
             }
 
