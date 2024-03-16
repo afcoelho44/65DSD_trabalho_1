@@ -13,7 +13,12 @@ package udesc.dsd.enums;
     UPDATE METHOD {"class", "method", "departmentId", "name"}
     DELETE METHOD {"class", "method", "departmentId"}
     LIST METHOD   {"class", "method"}
-    GET METHOD    {"class", "method", "departmentId"} */
+    GET METHOD    {"class", "method", "departmentId"}
+
+     RESPONSES
+     MESSAGE: {"MESSAGE", "Message body"}
+     OBJECT: {"OBJECT", object.toString()}
+     */
 
 public enum DataIndexes {
 
