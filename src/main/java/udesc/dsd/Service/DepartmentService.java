@@ -41,9 +41,9 @@ public class DepartmentService extends Service{
 
         try {
 
-            Department department = repository.getById(DataIndexes.DEPARTMENT_ID.index);
+            Department department = repository.getById(Long.parseLong(request[DataIndexes.DEPARTMENT_ID.index]));
             department.setName(request[DataIndexes.NAME.index]);
-            response = ResponseMessage.messageResponse("Pessoa atualizada com sucesso");
+            response = ResponseMessage.messageResponse("Departamento atualizado com sucesso");
 
         } catch (Exception e){
             response = ResponseMessage.messageResponse(e.getMessage());
@@ -58,7 +58,7 @@ public class DepartmentService extends Service{
 
         try {
 
-            Department department = repository.getById(DataIndexes.DEPARTMENT_ID.index);
+            Department department = repository.getById(Long.parseLong(request[DataIndexes.DEPARTMENT_ID.index]));
             repository.remove(department);
             response = ResponseMessage.messageResponse("Departamento removido com sucesso");
 
@@ -75,7 +75,7 @@ public class DepartmentService extends Service{
 
         try {
 
-            Department department = repository.getById(DataIndexes.DEPARTMENT_ID.index);
+            Department department = repository.getById(Long.parseLong(request[DataIndexes.DEPARTMENT_ID.index]));
             response = ResponseMessage.objectResponse(department.toString());
 
         } catch (Exception e){

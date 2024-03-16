@@ -1,7 +1,5 @@
 package udesc.dsd.enums;
 
-public enum DataIndexes {
-
     /*pattern:
     Person
     INSERT METHOD {"class", "method", "departmentId", "cpf", "name", "address", "type", "speciality"}
@@ -16,6 +14,8 @@ public enum DataIndexes {
     DELETE METHOD {"class", "method", "departmentId"}
     LIST METHOD   {"class", "method"}
     GET METHOD    {"class", "method", "departmentId"} */
+
+public enum DataIndexes {
 
     CLASS(0),
     METHOD(1),

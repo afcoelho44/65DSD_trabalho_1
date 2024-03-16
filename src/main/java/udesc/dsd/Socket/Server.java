@@ -29,7 +29,7 @@ public class Server {
         String message;
         while (true) {
             try {
-                System.out.println(BLUE + "Waiting request...");
+                System.out.println(BLUE + "Ready <-");
                 connection = server.accept();
                 System.out.println(BLUE + "Requested");
 

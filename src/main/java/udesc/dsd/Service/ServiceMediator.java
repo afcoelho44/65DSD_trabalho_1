@@ -6,8 +6,7 @@ import udesc.dsd.Exception.TypeNotExistsException;
 
 import java.io.PrintWriter;
 
-import static udesc.dsd.Commons.Constants.DEPARTMENT_REQUEST;
-import static udesc.dsd.Commons.Constants.PERSON_REQUEST;
+import static udesc.dsd.Commons.Constants.*;
 import static udesc.dsd.enums.DataIndexes.CLASS;
 import static udesc.dsd.enums.DataIndexes.METHOD;
 

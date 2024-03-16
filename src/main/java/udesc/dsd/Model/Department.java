@@ -62,7 +62,7 @@ public class Department {
         getEmployees().forEach(employeesList::append);
         employeesList.append("]");
 
-        return getNumberID() + ", "
+        return getNumberID() + ", " //{"1", "Security", "Sem Gerente", [pessoa;pessoa;pessoa]}
                 + getName() + ", "
                 + (manager != null ? manager.getName() : "Sem Gerente") + ", "
                 + employeesList;

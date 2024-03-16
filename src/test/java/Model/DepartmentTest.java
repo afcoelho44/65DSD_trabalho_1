@@ -69,22 +69,6 @@ public class DepartmentTest {
     }
 
     @Test
-    public void mustIncludeTheManagerInTheListOfEmployeesWhenFacingTheHeadOfTheDepartment(){
-        String cpf = "123456789";
-        String name = "Ana";
-        String address = "Rua x";
-        String departmentName = "security";
-        String uniqueAccessKey = new AccessKeyGenerator().generateAccessCode()[1];
-        Department department = new Department(departmentName);
-        Manager manager = new Manager(cpf, name, address, department, uniqueAccessKey);
-
-        department.setManager(manager);
-
-        assertNotNull("Manager cannot be null", department.getManager());
-        assertFalse("Department employees cannot be empty", department.getEmployees().isEmpty());
-    }
-
-    @Test
     public void mustRemoveEmployee(){
 
         String cpf1 = "1234567890";

@@ -11,9 +11,6 @@ import java.util.Scanner;
 import static udesc.dsd.Commons.Colors.*;
 
 public class Main {
-
-    private static boolean isRunning = true;
-
     public static void main(String[] args) throws IOException{
         populate();
         run();
@@ -30,7 +27,7 @@ public class Main {
 
     private static void continueRunning(){
         String answer = "";
-        while (!answer.equals("y") && !answer.equals("n")){
+        while (!answer.equals("y")){
             System.out.println(YELLOW + "Want to restart server? [y/n]");
             Scanner s = new Scanner(System.in);
             answer = s.next();
@@ -40,10 +37,12 @@ public class Main {
             }
             System.out.println(GREEN + "Server restarting...");
         }
+        System.out.println(YELLOW + "Shutting down");
     }
 
     private static void populate(){
         DepartmentDao.populate();
         PersonDao.populate();
     }
+    private static boolean isRunning = true;
 }
