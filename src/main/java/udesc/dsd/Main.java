@@ -8,10 +8,11 @@ import java.io.IOException;
 import java.net.ServerSocket;
 import java.util.Scanner;
 
-import static udesc.dsd.Commons.Colors.*;
+import static udesc.dsd.Commons.Colors.GREEN;
+import static udesc.dsd.Commons.Colors.YELLOW;
 
 public class Main {
-    public static void main(String[] args) throws IOException{
+    public static void main(String[] args) throws IOException {
         populate();
         run();
     }
@@ -46,3 +47,4 @@ public class Main {
     }
     private static boolean isRunning = true;
 }
+
